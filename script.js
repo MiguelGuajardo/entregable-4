@@ -57,7 +57,7 @@ const containerAdivinados = [
 ];
 
 let puntuación = 0;
-iniciarSesión();
+/*iniciarSesión();
 
 function iniciarSesión() {
   let user = prompt("INGRESE UN CORREO PARA CREAR UN USUARIO");
@@ -70,7 +70,8 @@ function iniciarSesión() {
   } else {
     alert("NO SE HA PODIDO INICIAR SESIÓN PORQUE USTED COMETIÓ ALGÚN ERROR");
   }
-}
+}*/
+mostrarMenu();
 function mostrarMenu() {
   let opción = 0;
 
@@ -147,7 +148,9 @@ function agregarPregunta() {
 /*---------------FUNCIONES DE LAS ADIVINANZAS------------*/
 function comenzarAdivinanzas() {
   for (i = 0; i < containerAdivinados.length; i++) {
-    let answerSelect = prompt(containerAdivinados[i].question);
+    let answerSelect = prompt(
+      containerAdivinados[i].question + ". la respuesta contiene " + +" letras"
+    );
     answerSelect = answerSelect.toUpperCase();
     if (answerSelect !== containerAdivinados[i].answer) {
       alert("Respuesta incorrecta.");
@@ -156,5 +159,19 @@ function comenzarAdivinanzas() {
       alert("Respuesta correcta.");
       puntuación++;
     }
+  }
+}
+function countCharacters() {
+  let myString = containerAdivinados[i].answer;
+  let output = [];
+  let letters = 1;
+  let i = 0;
+
+  while (i < myString.length) {
+    console.log(i);
+    var initIndex = i;
+    var endIndex = i + letters;
+    output.push(myString.substring(initIndex, endIndex));
+    i = endIndex;
   }
 }
