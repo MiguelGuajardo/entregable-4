@@ -41,7 +41,7 @@ const containerQuiz = [
   },
 ];
 
-/*ADIVINADOR*/
+/*ADIVINANZAS*/
 
 const containerAdivinados = [
   {
@@ -57,8 +57,7 @@ const containerAdivinados = [
 ];
 
 let puntuación = 0;
-/*iniciarSesión();
-
+iniciarSesión();
 function iniciarSesión() {
   let user = prompt("INGRESE UN CORREO PARA CREAR UN USUARIO");
   let password = prompt("INGRESE UNA CONTRASEÑA");
@@ -70,24 +69,27 @@ function iniciarSesión() {
   } else {
     alert("NO SE HA PODIDO INICIAR SESIÓN PORQUE USTED COMETIÓ ALGÚN ERROR");
   }
-}*/
+}
 mostrarMenu();
 function mostrarMenu() {
   let opción = 0;
 
   while (opción !== 4) {
     opción = Number(
-      prompt(`seleccione alguna opción:
-                                        1.Comenzar con el quiz
-                                        2.Agregar pregunta
-                                        3.Comenzar Adivinanzas
-                                        4.Fin`)
+      prompt(
+        `seleccione alguna opción:
+                              1.Comenzar con el quiz
+                              2.Agregar pregunta
+                              3.Comenzar Adivinanzas
+                              4.Fin
+                              Tu puntuación hasta el momento es de ` +
+          puntuación +
+          ` puntos`
+      )
     );
     switch (opción) {
       case 1: {
         comenzarQuiz();
-        alert("Tu puntuación fue de " + puntuación + " puntos");
-        puntuación = 0;
         break;
       }
       case 2: {
@@ -107,8 +109,7 @@ function mostrarMenu() {
     }
   }
 }
-/*------------------FUNCIONES DEL QUIZ--------------------*/
-function comenzarQuiz() {
+/*------------------FUNCIONES DEL QUIZ--------------------*/ function comenzarQuiz() {
   for (i = 0; i < containerQuiz.length; i++) {
     let answerSelect = Number(
       prompt(containerQuiz[i].question + " " + containerQuiz[i].choices)
@@ -145,11 +146,13 @@ function agregarPregunta() {
 
   containerQuiz.push(pregunta);
 }
-/*---------------FUNCIONES DE LAS ADIVINANZAS------------*/
-function comenzarAdivinanzas() {
+/*---------------FUNCIONES DE LAS ADIVINANZAS------------*/ function comenzarAdivinanzas() {
   for (i = 0; i < containerAdivinados.length; i++) {
     let answerSelect = prompt(
-      containerAdivinados[i].question + ". la respuesta contiene " + +" letras"
+      containerAdivinados[i].question +
+        ". la respuesta contiene " +
+        countCharacters() +
+        " letras"
     );
     answerSelect = answerSelect.toUpperCase();
     if (answerSelect !== containerAdivinados[i].answer) {
@@ -163,15 +166,5 @@ function comenzarAdivinanzas() {
 }
 function countCharacters() {
   let myString = containerAdivinados[i].answer;
-  let output = [];
-  let letters = 1;
-  let i = 0;
-
-  while (i < myString.length) {
-    console.log(i);
-    var initIndex = i;
-    var endIndex = i + letters;
-    output.push(myString.substring(initIndex, endIndex));
-    i = endIndex;
-  }
+  return myString.length;
 }
